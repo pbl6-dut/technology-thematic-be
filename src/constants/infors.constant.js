@@ -16,4 +16,17 @@ export default {
   // AuthService
   LOGIN_SUCCESS: 'Login successfully',
   LOGOUT_SUCCESS: 'Logout successfully',
+  SEND_VERIFY_CODE_SUCCESS: 'Send verify code successfully',
+  VERIFY_CODE_SUCCESS: 'Verify code successfully',
+  RESET_PASSWORD_SUCCESS: 'Reset password successfully',
+
+  // UsersService
+  USER_UPDATE_SUCCESS: 'Update user successfully',
+  UPDATE_AVATAR_SUCCESS: 'Update avatar successfully',
+  UPDATE_PROFILE_SUCCESS: 'Update profile successfully',
+
+  // Courses
+  START_TRANSACTION_CREATE_COURSE: 'Start transaction create course',
+  COMMIT_TRANSACTION_CREATE_COURSE: 'Transaction create course is commit',
+  ROLLBACK_TRANSACTION_CREATE_COURSE: 'Transaction create course is rollback',
 };

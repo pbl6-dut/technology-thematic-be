@@ -28,12 +28,17 @@ export default {
 
   // AuthService
   INCORRECT_PASSWORD: 'Incorrect password',
-  SIGNIN_FAILED: 'Cannot login with this email and password',
+  SIGN_IN_FAILED: 'Your email or password is incorrect',
   LOGOUT_FAILED: 'Something wrong while logout',
   CONFIRM_EMAIL_FAILED: 'Cannot confirm email',
   REFRESH_TOKEN_FAILED: 'Cannot refresh token',
   GET_ME_FAILED: 'Cannot get me',
   USER_NOT_CONFIRMED: 'User not confirmed',
+  FORGOT_PASSWORD_FAILED: 'Cannot forgot password',
+  VERIFY_CODE_INCORRECT: 'Verify code incorrect',
+  VERIFY_CODE_EXPIRED: 'Verify code expired',
+  VERIFY_CODE_FAILED: 'Cannot verify code',
+  RESET_PASSWORD_FAILED: 'Reset password failed',
 
   // UsersService
   USER_NOT_FOUND: 'User not found',
@@ -42,4 +47,7 @@ export default {
 
   // Helpers Mail
   EMAIL_NOT_SENT: 'Email not sent',
+
+  // Course
+  ERR_WHILE_CREATE_COURSE_AT_SER: 'Cannot create course at service',
 };
