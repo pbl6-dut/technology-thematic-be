@@ -7,9 +7,9 @@ export default class BaseRepository {
     this.model = model;
   }
 
-  async create(input, transaction = null) {
+  async create(input) {
     try {
-      const data = await this.model.create(input, transaction);
+      const data = await this.model.create(input);
       logger.info(infors.CREATE_AT_REPO_SUCCESS.format(this.model.name));
 
       return data;
@@ -75,27 +75,6 @@ export default class BaseRepository {
     }
   }
 
-  async deleteByCondition(condition) {
-    try {
-      const data = await this.model.destroy({
-        where: {
-          ...condition,
-        },
-      });
-      logger.info(
-        infors.DELETE_BY_CONDITION_AT_REPO_SUCCESS.format(this.model.name)
-      );
-      return data;
-    } catch (error) {
-      logger.error(
-        `${errors.DELETE_BY_CONDITION_AT_REPO.format(
-          this.model.name
-        )} - ${error}`
-      );
-      throw new Error(error);
-    }
-  }
-
   async find(id) {
     try {
       const data = await this.model.findByPk(id);
@@ -141,21 +120,12 @@ export default class BaseRepository {
     }
   }
 
-  async findOneByCondition(
-    condition,
-    isDeleted = false,
-    include = null,
-    attributes = null,
-    group = null
-  ) {
+  async findOneByCondition(condition, isDeleted = false, include = null) {
     try {
       const data = await this.model.findOne({
         include,
         where: { ...condition },
         paranoid: !isDeleted,
-        attributes,
-        group,
-        logging: console.log,
       });
 
       logger.info(
@@ -216,22 +186,6 @@ export default class BaseRepository {
           this.model.name
         )} - ${error}`
       );
-      throw new Error(error);
-    }
-  }
-
-  async count(condition, isDeleted = false, include = null, attributes = null) {
-    try {
-      const data = await this.model.count({
-        include,
-        where: { ...condition },
-        paranoid: !isDeleted,
-        attributes,
-        logging: console.log,
-      });
-
-      return data;
-    } catch (error) {
       throw new Error(error);
     }
   }

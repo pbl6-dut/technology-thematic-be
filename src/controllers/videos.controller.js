@@ -1,7 +1,6 @@
 import { VideosService } from 'services';
 import Response from 'helpers/response';
 import { httpCodes, errors, pages } from 'constants';
-import { json } from 'utils';
 
 class VideosController {
   constructor(service) {
@@ -28,20 +27,7 @@ class VideosController {
       const { page, limit } = req.query;
 
       if (id) {
-        let data = await this.service.find(id);
-        data = json(data);
-
-        const totalView = await this.service.countViewOfVideo(id);
-        const totalComment = await this.service.countCommentOfVideo(id);
-        const totalLike = await this.service.countLikeOfVideo(id);
-
-        data = {
-          ...data,
-          totalView: Number(totalView),
-          totalComment: Number(totalComment),
-          totalLike: Number(totalLike),
-        };
-
+        const data = await this.service.find(id);
         return Response.success(res, { docs: data }, httpCodes.STATUS_OK);
         // eslint-disable-next-line no-else-return
       } else {

@@ -5,9 +5,9 @@ export default class BaseService {
     this.repo = repo;
   }
 
-  async create(data, transaction = null) {
+  async create(data) {
     try {
-      return await this.repo.create(data, transaction);
+      return await this.repo.create(data);
     } catch (error) {
       throw new Error(error);
     }
@@ -33,14 +33,6 @@ export default class BaseService {
     }
   }
 
-  async findOneByCondition(condition) {
-    try {
-      return await this.repo.findOneByCondition(condition);
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
-
   async findAllByCondition(condition, pagination = null) {
     try {
       if (pagination) {
@@ -56,14 +48,6 @@ export default class BaseService {
   async update(id, data) {
     try {
       return await this.repo.updateByPk(id, data);
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
-
-  async updateByCondition(condition, data) {
-    try {
-      return await this.repo.updateByCondition(condition, data);
     } catch (error) {
       throw new Error(error);
     }

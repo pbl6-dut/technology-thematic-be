@@ -1,4 +1,5 @@
-import { UsersService, oAuthAccessTokenService } from 'services';
+/* eslint-disable no-console */
+/* eslint-disable consistent-return */
 import Response from '../helpers/response';
 import jwt from '../helpers/jwt';
 import { errors } from '../constants';
@@ -31,24 +32,5 @@ export default class AuthMiddleware {
 
     req.jwt = decoded;
     return next();
-  }
-
-  static async isUser(req, res, next) {
-    try {
-      const { idOAuth } = req.jwt;
-
-      const oAuth = await oAuthAccessTokenService.getOauthAccessTokenById(
-        idOAuth
-      );
-
-      if (!oAuth) {
-        throw new Error();
-      }
-
-      req.user = await UsersService.getUserById(oAuth.userId);
-      return next();
-    } catch (error) {
-      return Response.error(res, error);
-    }
   }
 }
