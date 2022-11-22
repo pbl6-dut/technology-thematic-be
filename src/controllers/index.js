@@ -5,7 +5,6 @@ import SectionsController from './sections.controller';
 import UploadController from './upload.controller';
 import UserController from './user.controller';
 import VideosController from './videos.controller';
-import HashtagsController from './hashtags.controller';
 
 export {
   authController,
@@ -15,5 +14,4 @@ export {
   UploadController,
   UserController,
   VideosController,
-  HashtagsController,
 };

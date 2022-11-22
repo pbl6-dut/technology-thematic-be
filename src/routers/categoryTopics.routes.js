@@ -1,7 +1,5 @@
 import express from 'express';
 import { CategoryTopicsController } from 'controllers';
-import { CategoryTopicsService as categoryTopicService } from 'services';
-
 import {
   ValidatorBody,
   ValidatorId,
@@ -18,7 +16,7 @@ router.get('/:id', ValidatorId, CategoryTopicsController.get);
 router.post(
   '/',
   ValidatorBody('categoryTopic'),
-  ValidatorName(categoryTopicService, 'categoryTopic'),
+  ValidatorName,
   CategoryTopicsController.create
 );
 
@@ -26,7 +24,7 @@ router.put(
   '/:id',
   ValidatorId,
   ValidatorBody('categoryTopic'),
-  ValidatorNameUpdate(categoryTopicService, 'categoryTopic'),
+  ValidatorNameUpdate,
   CategoryTopicsController.update
 );
 
