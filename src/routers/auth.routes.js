@@ -61,36 +61,15 @@ router.post(
 );
 
 router.get(
-  '/confirm-email/:confirmToken',
+  '/confirmEmail/:confirmToken',
   ValidatorParams('confirmToken'),
   authController.confirmEmail
 );
 
 router.get('/me', AuthMiddleware.isRequired, authController.getMe);
 
-router.post(
-  '/forgot-password',
-  ValidatorBody('emailExists'),
-  authController.forgotPassword
-);
-
-router.post(
-  '/verify-code',
-  ValidatorBody('verifyCode'),
-  authController.verifyCode
-);
-
-router.post(
-  '/reset-password',
-  ValidatorBody('resetPassword'),
-  authController.resetPassword
-);
-
-router.post(
-  '/change-password',
-  ValidatorBody('changePassword'),
-  AuthMiddleware.isRequired,
-  authController.changePassword
-);
+router.get('/test', AuthMiddleware.isRequired, (req, res) => {
+  res.json({ message: req.jwt });
+});
 
 export default router;
