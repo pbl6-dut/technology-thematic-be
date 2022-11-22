@@ -15,6 +15,7 @@ class CoursesController {
     this.update = this.update.bind(this);
     this.delete = this.delete.bind(this);
     this.get = this.get.bind(this);
+    this.getSections = this.getSections.bind(this);
   }
 
   async create(req, res) {
@@ -56,6 +57,36 @@ class CoursesController {
       }
     } catch (error) {
       return Response.error(res, errors.WHILE_GET.format('course'), 400);
+    }
+  }
+
+  async getSections(req, res) {
+    try {
+      // id of course
+      const { id } = req.params;
+      const { page, limit } = req.query;
+
+      if (page || limit) {
+        const data = await this.service.findSectionsByCourse(id, {
+          page: parseInt(page || pages.PAGE_DEFAULT),
+          limit: parseInt(limit || pages.LIMIT_DEFAULT),
+        });
+
+        return Response.success(
+          res,
+          { docs: data.sections, pagination: data.pagination },
+          httpCodes.STATUS_OK
+        );
+      }
+
+      const data = await this.service.findSectionsByCourse(id);
+      return Response.success(res, { docs: data }, httpCodes.STATUS_OK);
+    } catch (error) {
+      return Response.error(
+        res,
+        errors.WHILE_GET.format('sections of course'),
+        400
+      );
     }
   }
 

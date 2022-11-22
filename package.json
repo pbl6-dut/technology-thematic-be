@@ -1,6 +1,6 @@
 {
   "name": "pbl6",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "PBL6 - DUT",
   "main": "index.js",
   "license": "MIT",
@@ -67,8 +67,9 @@
     "swagger-ui-express": "^4.5.0",
     "uuid": "^9.0.0",
     "winston": "^3.8.2",
-    "@sentry/node": "^7.17.4",
-    "@sentry/tracing": "^7.17.4"
+    "eureka-js-client": "^4.5.0",
+    "request": "^2.88.2",
+    "ip": "^1.1.8"
   },
   "repository": "https://github.com/huynhngocthuat/PBL6-BE.git",
   "author": "Đoàn Tân Tỵ <doantanty92@gmail.com>"
