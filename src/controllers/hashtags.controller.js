@@ -1,16 +1,14 @@
-import { VideosService } from 'services';
+import { HashtagsService } from 'services';
 import Response from 'helpers/response';
 import { httpCodes, errors, pages } from 'constants';
-import { json } from 'utils';
 
-class VideosController {
+class HashtagsController {
   constructor(service) {
     this.service = service;
     this.create = this.create.bind(this);
     this.update = this.update.bind(this);
     this.delete = this.delete.bind(this);
     this.get = this.get.bind(this);
-    this.getInstructorUploadVideo = this.getInstructorUploadVideo.bind(this);
   }
 
   async create(req, res) {
@@ -18,7 +16,7 @@ class VideosController {
       const data = await this.service.create(req.body);
       return Response.success(res, { docs: data }, httpCodes.STATUS_OK);
     } catch (error) {
-      return Response.error(res, errors.WHILE_CREATE.format('video'), 400);
+      return Response.error(res, errors.WHILE_CREATE.format('hashtag'), 400);
     }
   }
 
@@ -28,20 +26,7 @@ class VideosController {
       const { page, limit } = req.query;
 
       if (id) {
-        let data = await this.service.find(id);
-        data = json(data);
-
-        const totalView = await this.service.countViewOfVideo(id);
-        const totalComment = await this.service.countCommentOfVideo(id);
-        const totalLike = await this.service.countLikeOfVideo(id);
-
-        data = {
-          ...data,
-          totalView: Number(totalView),
-          totalComment: Number(totalComment),
-          totalLike: Number(totalLike),
-        };
-
+        const data = await this.service.find(id);
         return Response.success(res, { docs: data }, httpCodes.STATUS_OK);
         // eslint-disable-next-line no-else-return
       } else {
@@ -67,21 +52,7 @@ class VideosController {
         }
       }
     } catch (error) {
-      return Response.error(res, errors.WHILE_GET.format('video'), 400);
-    }
-  }
-
-  async getInstructorUploadVideo(req, res) {
-    try {
-      const { id } = req.params;
-      const user = await this.service.getInstructorUploadVideo(id);
-      return Response.success(res, { docs: user }, httpCodes.STATUS_OK);
-    } catch (error) {
-      return Response.error(
-        res,
-        errors.WHILE_GET.format('instructor upload video'),
-        400
-      );
+      return Response.error(res, errors.WHILE_GET.format('hashtag'), 400);
     }
   }
 
@@ -92,9 +63,9 @@ class VideosController {
       if (data) {
         return Response.success(res, { docs: data }, httpCodes.STATUS_OK);
       }
-      return Response.error(res, errors.WHILE_UPDATE.format('video'), 400);
+      return Response.error(res, errors.WHILE_UPDATE.format('hashtag'), 400);
     } catch (error) {
-      return Response.error(res, errors.WHILE_UPDATE.format('video'), 400);
+      return Response.error(res, errors.WHILE_UPDATE.format('hashtag'), 400);
     }
   }
 
@@ -105,9 +76,9 @@ class VideosController {
 
       return Response.success(res, { docs: data }, httpCodes.STATUS_OK);
     } catch (error) {
-      return Response.error(res, errors.WHILE_DELETE.format('video'), 400);
+      return Response.error(res, errors.WHILE_DELETE.format('hashtag'), 400);
     }
   }
 }
 
-export default new VideosController(VideosService);
+export default new HashtagsController(HashtagsService);
