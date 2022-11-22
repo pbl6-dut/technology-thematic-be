@@ -12,9 +12,9 @@ import oAuthAccessTokenService from './oAuthAccessToken.service';
 import UsersService from './users.service';
 
 class AuthService {
-  constructor() {
+  constructor({ UsersService, oAuthService }) {
     this.usersService = UsersService;
-    this.oAuthService = oAuthAccessTokenService;
+    this.oAuthService = oAuthService;
   }
 
   async signUp(data) {
@@ -54,7 +54,7 @@ class AuthService {
     });
 
     const refreshToken = jwt.refreshSign({
-      refreshToken: oAuth.refreshToken,
+      refresh: oAuth.refreshToken,
     });
 
     return new SignInResponse({
@@ -106,10 +106,10 @@ class AuthService {
         throw new Error(errors.TOKEN_INVALID);
       }
 
-      const { refreshToken } = decoded;
+      const { refresh } = decoded;
 
       const oAuth = await this.oAuthService.getOauthAccessTokenByRefreshToken(
-        refreshToken
+        refresh
       );
 
       if (!oAuth) {
@@ -147,4 +147,7 @@ class AuthService {
   }
 }
 
-export default new AuthService();
+export default new AuthService({
+  UsersService,
+  oAuthService: oAuthAccessTokenService,
+});

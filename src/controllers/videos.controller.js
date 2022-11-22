@@ -1,15 +1,15 @@
-import { SectionsService } from 'services';
+import { VideosService } from 'services';
 import Response from 'helpers/response';
 import { httpCodes, errors, pages } from 'constants';
 
-class SectionsController {
+class VideosController {
   constructor(service) {
     this.service = service;
     this.create = this.create.bind(this);
-    this.get = this.get.bind(this);
     this.update = this.update.bind(this);
     this.delete = this.delete.bind(this);
-    this.getVideos = this.getVideos.bind(this);
+    this.get = this.get.bind(this);
+    this.getInstructorUploadVideo = this.getInstructorUploadVideo.bind(this);
   }
 
   async create(req, res) {
@@ -17,7 +17,7 @@ class SectionsController {
       const data = await this.service.create(req.body);
       return Response.success(res, { docs: data }, httpCodes.STATUS_OK);
     } catch (error) {
-      return Response.error(res, errors.WHILE_CREATE.format('section'), 400);
+      return Response.error(res, errors.WHILE_CREATE.format('video'), 400);
     }
   }
 
@@ -53,20 +53,19 @@ class SectionsController {
         }
       }
     } catch (error) {
-      return Response.error(res, errors.WHILE_GET.format('section'), 400);
+      return Response.error(res, errors.WHILE_GET.format('video'), 400);
     }
   }
 
-  async getVideos(req, res) {
+  async getInstructorUploadVideo(req, res) {
     try {
-      // id of section
       const { id } = req.params;
-      const data = await this.service.findVideosBySection(id);
-      return Response.success(res, { docs: data }, httpCodes.STATUS_OK);
+      const user = await this.service.getInstructorUploadVideo(id);
+      return Response.success(res, { docs: user }, httpCodes.STATUS_OK);
     } catch (error) {
       return Response.error(
         res,
-        errors.WHILE_GET.format('videos of section'),
+        errors.WHILE_GET.format('instructor upload video'),
         400
       );
     }
@@ -79,9 +78,9 @@ class SectionsController {
       if (data) {
         return Response.success(res, { docs: data }, httpCodes.STATUS_OK);
       }
-      return Response.error(res, errors.WHILE_UPDATE.format('section'), 400);
+      return Response.error(res, errors.WHILE_UPDATE.format('video'), 400);
     } catch (error) {
-      return Response.error(res, errors.WHILE_UPDATE.format('section'), 400);
+      return Response.error(res, errors.WHILE_UPDATE.format('video'), 400);
     }
   }
 
@@ -92,9 +91,9 @@ class SectionsController {
 
       return Response.success(res, { docs: data }, httpCodes.STATUS_OK);
     } catch (error) {
-      return Response.error(res, errors.WHILE_DELETE.format('section'), 400);
+      return Response.error(res, errors.WHILE_DELETE.format('video'), 400);
     }
   }
 }
 
-export default new SectionsController(SectionsService);
+export default new VideosController(VideosService);
