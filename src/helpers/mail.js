@@ -1,34 +1,13 @@
-/* eslint-disable no-console */
 import nodemailer from 'nodemailer';
-import { OAuth2Client } from 'google-auth-library';
 import dotenv from 'dotenv';
 import { errors } from 'constants';
 
 dotenv.config();
 
-const {
-  GOOGLE_MAILER_CLIENT_ID,
-  GOOGLE_MAILER_CLIENT_SECRET,
-  ADMIN_EMAIL_ADDRESS,
-  GOOGLE_MAILER_REFRESH_TOKEN,
-} = process.env;
-
-const myOAuth2Client = new OAuth2Client(
-  GOOGLE_MAILER_CLIENT_ID,
-  GOOGLE_MAILER_CLIENT_SECRET
-);
-
-myOAuth2Client.setCredentials({
-  refresh_token: GOOGLE_MAILER_REFRESH_TOKEN,
-});
+const { ADMIN_EMAIL_ADDRESS, GOOGLE_APP_PASSWORD } = process.env;
 
 const mailHost = 'smtp.gmail.com';
 const mailPort = 587;
-
-const getAccessToken = async () => {
-  const accessToken = await myOAuth2Client.getAccessToken();
-  return accessToken.token;
-};
 
 const getTransporter = () => {
   const transporter = nodemailer.createTransport({
@@ -36,14 +15,11 @@ const getTransporter = () => {
     port: mailPort,
     secure: false,
     auth: {
-      type: 'OAuth2',
       user: ADMIN_EMAIL_ADDRESS,
-      clientId: GOOGLE_MAILER_CLIENT_ID,
-      clientSecret: GOOGLE_MAILER_CLIENT_SECRET,
-      refreshToken: GOOGLE_MAILER_REFRESH_TOKEN,
-      accessToken: getAccessToken(),
+      pass: GOOGLE_APP_PASSWORD,
     },
   });
+
   return transporter;
 };
 
@@ -62,16 +38,25 @@ const sendMail = async (to, subject, htmlContent) => {
   }
 };
 
-const sendEmailConfirm = async ({ email, confirmToken }) => {
+export const sendEmailConfirm = async ({ email, confirmToken }) => {
   const html = `
     <h1>Confirm your email</h1>
     <p>Please click on the link below to confirm your email</p>
-    <a href="${process.env.BASE_URL}/confirmEmail/${confirmToken}">Confirm email</a>
+    <a href="${process.env.BASE_URL}/confirm-email/${confirmToken}">Confirm email</a>
   `;
   const res = await sendMail(email, 'Confirm email', html);
   return res;
 };
 
-export default sendMail;
+export const sendVerifyCode = async ({ email, verifyCode }) => {
+  const html = `
+    <h1>Reset password</h1>
+    <p>Please enter the code below to reset your password:</p>
+    <p style="font-weight:600; font-size:24px">${verifyCode}</p>
+    <p>This code will expire in 5 minutes</p>
+  `;
+  const res = await sendMail(email, 'Reset password', html);
+  return res;
+};
 
-export { sendEmailConfirm };
+export default sendMail;

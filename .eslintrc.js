@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    jest: true,
   },
   extends: [
     'airbnb-base',
@@ -23,5 +24,6 @@ module.exports = {
     'import/export': 2,
     'no-extend-native': 'off',
     'no-useless-constructor': 'off',
+    'no-shadow': 'off',
   },
 };
