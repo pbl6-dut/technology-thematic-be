@@ -1,4 +1,4 @@
-# Technology-thematic-be
+# Technology-thematic-be (v1)
 
 ## Project setup
 
