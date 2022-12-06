@@ -10,9 +10,8 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 # Install app dependencies
 COPY package*.json ./
-RUN npm install
+RUN yarn install
 
-EXPOSE 9229
 EXPOSE 3000
 
 # Fire it up!

@@ -6303,6 +6303,7 @@ swagger-ui-express@^4.5.0:
   dependencies:
     swagger-ui-dist ">=4.11.0"
 
+<<<<<<< HEAD
 test-exclude@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/test-exclude/-/test-exclude-6.0.0.tgz#04a8698661d805ea6fa293b6cb9e63ac044ef15e"
@@ -6311,6 +6312,16 @@ test-exclude@^6.0.0:
     "@istanbuljs/schema" "^0.1.2"
     glob "^7.1.4"
     minimatch "^3.0.4"
+=======
+technology_thematic_lib@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/technology_thematic_lib/-/technology_thematic_lib-1.0.0.tgz#89991fc0dbe23f725c8224fe55ad53b8471c924d"
+  integrity sha512-xRQyc/auuW0c6aKq8J8dT5CrSNI2CkSwZw5UxaFPr3t5FzddbtDDoN0m1OWJ85jHmJpEgd2Sj3WHRKOOoyN9tQ==
+  dependencies:
+    eureka-js-client "^4.5.0"
+    ip "^1.1.8"
+    request "^2.88.2"
+>>>>>>> f510163 (config: Config winston and winston transport)
 
 text-hex@1.0.x:
   version "1.0.0"

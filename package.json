@@ -75,7 +75,9 @@
     "uuid": "^9.0.0",
     "winston": "^3.8.2",
     "winston-elasticsearch": "^0.17.1",
-    "winston-logstash-transport": "^2.0.0"
+    "winston-logstash-transport": "^2.0.0",
+    "technology_thematic_lib": "1.0.0"
+
   },
   "repository": "https://github.com/huynhngocthuat/PBL6-BE.git",
   "author": "Đoàn Tân Tỵ <doantanty92@gmail.com>"
