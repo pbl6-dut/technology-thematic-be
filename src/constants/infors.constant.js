@@ -13,6 +13,9 @@ export default {
   DELETE_BY_CONDITION_AT_REPO_SUCCESS:
     'Delete model {0} by condition successfully',
 
+  // Middleware
+  AUTHORIZATION_SUCCESS: '{0}: authorization successfully',
+
   // AuthService
   LOGIN_SUCCESS: 'Login successfully',
   LOGOUT_SUCCESS: 'Logout successfully',
