@@ -1,7 +1,8 @@
 import { UsersService, oAuthAccessTokenService } from 'services';
+import logger from 'configs/winston.config';
 import Response from '../helpers/response';
 import jwt from '../helpers/jwt';
-import { errors } from '../constants';
+import { errors, infors } from '../constants';
 
 export default class AuthMiddleware {
   static isRequired(req, res, next) {
@@ -46,6 +47,7 @@ export default class AuthMiddleware {
       }
 
       req.user = await UsersService.getUserById(oAuth.userId);
+      logger.info(infors.AUTHORIZATION_SUCCESS.format(req.user.email));
       return next();
     } catch (error) {
       return Response.error(res, error);
