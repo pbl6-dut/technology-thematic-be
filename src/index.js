@@ -9,10 +9,13 @@ import router from 'routers';
 import stringFormat from 'utils/string-format';
 import { swagger } from 'helpers/swagger';
 import bodyParser from 'body-parser';
+import ErrorTracking from 'configs/sentry.config';
 
 dotenv.config();
 
-db.sequelize.sync();
+ErrorTracking.init();
+
+db.sequelize.sync().catch((error) => ErrorTracking.captureException(error));
 
 const app = express();
 app.use(cors());
