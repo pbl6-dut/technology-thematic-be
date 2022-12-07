@@ -1,4 +1,6 @@
 import express from 'express';
+import logger from 'configs/winston.config';
+
 import users from './users.routes';
 import auth from './auth.routes';
 import categoryTopics from './categoryTopics.routes';
@@ -18,5 +20,9 @@ router.use('/sections', sections);
 router.use('/upload', upload);
 router.use('/videos', video);
 router.use('/hashtags', hashtags);
+router.use('/demo', (req, res) => {
+  res.send('ngon');
+  logger.info('ngon luon');
+});
 
 export default router;
