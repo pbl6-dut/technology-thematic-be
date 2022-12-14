@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
@@ -7,13 +6,16 @@ import db from 'models';
 import router from 'routers';
 // FIXME
 // eslint-disable-next-line no-unused-vars
-import stringFormat from 'utils/string-format';
+import stringFormat from 'helpers/string-format';
 import { swagger } from 'helpers/swagger';
 import bodyParser from 'body-parser';
+import ErrorTracking from 'configs/sentry.config';
 
 dotenv.config();
 
-db.sequelize.sync();
+ErrorTracking.init();
+
+db.sequelize.sync().catch((error) => ErrorTracking.captureException(error));
 
 const app = express();
 app.use(cors());

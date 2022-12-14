@@ -1,6 +1,5 @@
 import { CoursesRepository } from 'repositories';
-import { json } from 'utils';
-import { getPagination, getPagingData } from 'helpers/pagging';
+import { getPagination, getPagingData, json } from 'technology_thematic_lib';
 import { errors, infors } from 'constants';
 import db from 'models';
 import logger from 'configs/winston.config';

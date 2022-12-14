@@ -1,4 +1,8 @@
 import express from 'express';
+import logger from 'configs/winston.config';
+
+import { usersRepository } from 'repositories';
+import loggerFormat from 'helpers/logFormat';
 import users from './users.routes';
 import auth from './auth.routes';
 import categoryTopics from './categoryTopics.routes';
@@ -18,5 +22,20 @@ router.use('/sections', sections);
 router.use('/upload', upload);
 router.use('/videos', video);
 router.use('/hashtags', hashtags);
+router.use('/demo-sentry', (req, res) => {
+  usersRepository.create({
+    email: '24h@yopmail.com',
+    password: 'Nhatlong2001@@',
+    fullName: 'NhatLong',
+  });
+  res.send('demo-sentry');
+
+  logger.info('demo-sentry');
+});
+
+router.get('/demo-elk', (req, res) => {
+  logger.info(`Request: ${loggerFormat(req, 200)}`);
+  res.send('demo-elk-ok');
+});
 
 export default router;
