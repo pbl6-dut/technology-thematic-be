@@ -8,7 +8,7 @@ import jwt from 'helpers/jwt';
 import bcrypt from 'bcryptjs';
 import { v4 as uuid } from 'uuid';
 import { errors, infors, time } from 'constants';
-import { randomVerifiedCode } from 'utils';
+import { randomVerifiedCode } from 'technology_thematic_lib';
 import { sendVerifyCode } from 'helpers/mail';
 import oAuthAccessTokenService from './oAuthAccessToken.service';
 import UsersService from './users.service';

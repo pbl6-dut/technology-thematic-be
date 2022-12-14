@@ -72,7 +72,7 @@
     "streamifier": "^0.1.1",
     "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.5.0",
-    "technology_thematic_lib": "2.0.0",
+    "technology_thematic_lib": "^2.0.2",
     "uuid": "^9.0.0",
     "winston": "^3.8.2",
     "winston-elasticsearch": "^0.17.1",
