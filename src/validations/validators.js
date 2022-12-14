@@ -2,7 +2,7 @@ import * as Schemas from 'commons/schemas';
 import Response from 'helpers/response';
 import { validate as uuidValidate } from 'uuid';
 import { messages, errors } from 'constants';
-import { json } from 'utils';
+import { json } from 'technology_thematic_lib';
 
 export function ValidatorBody(validator) {
   // eslint-disable-next-line no-prototype-builtins

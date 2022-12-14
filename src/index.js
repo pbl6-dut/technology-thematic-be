@@ -6,7 +6,7 @@ import db from 'models';
 import router from 'routers';
 // FIXME
 // eslint-disable-next-line no-unused-vars
-import stringFormat from 'utils/string-format';
+import stringFormat from 'helpers/string-format';
 import { swagger } from 'helpers/swagger';
 import bodyParser from 'body-parser';
 import ErrorTracking from 'configs/sentry.config';
