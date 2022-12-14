@@ -1,7 +1,7 @@
 import { usersRepository } from 'repositories';
 import { v4 as uuidv4 } from 'uuid';
 import { sendEmailConfirm } from 'helpers/mail';
-import { json } from 'utils';
+import { json } from 'technology_thematic_lib/utils';
 import { errors, infors } from 'constants';
 import { UserDetailsResponse } from 'commons/responses/auth';
 import oAuthAccessTokenService from './oAuthAccessToken.service';

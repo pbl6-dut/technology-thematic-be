@@ -22,11 +22,6 @@ router.put(
   UserController.updateProfile
 );
 
-router.get(
-  '/details',
-  AuthMiddleware.isRequired,
-  AuthMiddleware.isUser,
-  UserController.getUserDetails
-);
+router.get('/details', AuthMiddleware.isUser, UserController.getUserDetails);
 
 export default router;
