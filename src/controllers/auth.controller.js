@@ -1,6 +1,7 @@
 import { AuthService } from 'services';
 import Response from 'helpers/response';
 import logger from 'configs/winston.config';
+import loggerFormat from 'helpers/logFormat';
 
 class AuthController {
   constructor(service) {
@@ -19,10 +20,16 @@ class AuthController {
   async register(req, res) {
     try {
       const user = await this.service.signUp(req.body);
-      logger.info(`User ${user.email} has been created`);
+
+      logger.info(`Request router [register]: ${loggerFormat(req, 200)}`);
       return Response.success(res, { docs: user }, 201);
     } catch (error) {
-      logger.error('Error in register', error, req.body);
+      logger.error(
+        `Error in request [register]: ${loggerFormat(
+          req,
+          400
+        )} \n Error: ${error}`
+      );
       return Response.error(res, error);
     }
   }
@@ -30,10 +37,13 @@ class AuthController {
   async login(req, res) {
     try {
       const docs = await this.service.signIn(req.body);
-      logger.info(`User ${req.body.email} has been logged in`);
+
+      logger.info(`Request router [login]: ${loggerFormat(req, 200)}`);
       return Response.success(res, { docs });
     } catch (error) {
-      logger.error('Error in login', error, req.body);
+      logger.error(
+        `Error in request [login]: ${loggerFormat(req, 400)} \n Error: ${error}`
+      );
       return Response.error(res, error);
     }
   }
@@ -42,10 +52,16 @@ class AuthController {
     try {
       const { idOAuth } = req.jwt;
       const docs = await this.service.logout(idOAuth);
-      logger.info(`User with idOauth ${idOAuth} has been logged out`);
+
+      logger.info(`Request router [logout]: ${loggerFormat(req, 200)}`);
       return Response.success(res, { docs });
     } catch (error) {
-      logger.error('Error in logout', error, req.body);
+      logger.error(
+        `Error in request [logout]: ${loggerFormat(
+          req,
+          400
+        )} \n Error: ${error}`
+      );
       return Response.error(res, error);
     }
   }
@@ -53,10 +69,16 @@ class AuthController {
   async confirmEmail(req, res) {
     try {
       const docs = await this.service.confirmEmail(req.params.confirmToken);
-      logger.info(`Confirm email with token ${req.params.confirmToken}`);
+      logger.info(`Request router [confirmEmail]: ${loggerFormat(req, 200)}`);
+
       return Response.success(res, { docs });
     } catch (error) {
-      logger.error('Error in confirm email', error, req.body);
+      logger.error(
+        `Error in request [confirmEmail]: ${loggerFormat(
+          req,
+          400
+        )} \n Error: ${error}`
+      );
       return Response.error(res, error);
     }
   }
@@ -64,10 +86,16 @@ class AuthController {
   async refreshToken(req, res) {
     try {
       const docs = await this.service.refreshToken(req.body.refreshToken);
-      logger.info(`Refresh token with req ${req.body}`);
+      logger.info(`Request router [refreshToken]: ${loggerFormat(req, 200)}`);
+
       return Response.success(res, { docs });
     } catch (error) {
-      logger.error('Error in refresh token', error, req.body);
+      logger.error(
+        `Error in request [refreshToken]: ${loggerFormat(
+          req,
+          400
+        )} \n Error: ${error}`
+      );
       return Response.error(res, error);
     }
   }
@@ -76,10 +104,14 @@ class AuthController {
     try {
       const { idOAuth } = req.jwt;
       const docs = await this.service.getMe(idOAuth);
-      logger.info(`User ${docs.email} has been get me`);
+
+      logger.info(`Request router [getMe]: ${loggerFormat(req, 200)}`);
       return Response.success(res, { docs });
     } catch (error) {
-      logger.error('Error in get me', error, req.body);
+      logger.error(
+        `Error in request [getMe]: ${loggerFormat(req, 400)} \n Error: ${error}`
+      );
+
       return Response.error(res, error);
     }
   }
@@ -88,10 +120,16 @@ class AuthController {
     try {
       const { email } = req.body;
       const docs = await this.service.forgotPassword(email);
-      logger.info(`Forgot password with req ${req.body}`);
+
+      logger.info(`Request router [forgotPassword]: ${loggerFormat(req, 200)}`);
       return Response.success(res, { docs });
     } catch (error) {
-      logger.error('Error in forgot password', error, req.body);
+      logger.error(
+        `Error in request [forgotPassword]: ${loggerFormat(
+          req,
+          400
+        )} \n Error: ${error}`
+      );
       return Response.error(res, error);
     }
   }
@@ -100,10 +138,16 @@ class AuthController {
     try {
       const { email, verifyCode } = req.body;
       const docs = await this.service.verifyCode({ email, verifyCode });
-      logger.info(`Verify code with req ${req.body}`);
+      logger.info(`Request router [verifyCode]: ${loggerFormat(req, 200)}`);
+
       return Response.success(res, { docs });
     } catch (error) {
-      logger.error('Error in verify code', error, req.body);
+      logger.error(
+        `Error in request [verifyCode]: ${loggerFormat(
+          req,
+          400
+        )} \n Error: ${error}`
+      );
       return Response.error(res, error);
     }
   }
@@ -116,10 +160,16 @@ class AuthController {
         verifyCode,
         password,
       });
-      logger.info(`User ${email} has been reset password`);
+      logger.info(`Request router [resetPassword]: ${loggerFormat(req, 200)}`);
+
       return Response.success(res, { docs });
     } catch (error) {
-      logger.error('Error in reset password', error, req.body);
+      logger.error(
+        `Error in request [resetPassword]: ${loggerFormat(
+          req,
+          400
+        )} \n Error: ${error}`
+      );
       return Response.error(res, error);
     }
   }

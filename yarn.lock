@@ -6186,10 +6186,10 @@ swagger-ui-express@^4.5.0:
   dependencies:
     swagger-ui-dist ">=4.11.0"
 
-technology_thematic_lib@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/technology_thematic_lib/-/technology_thematic_lib-1.0.0.tgz#89991fc0dbe23f725c8224fe55ad53b8471c924d"
-  integrity sha512-xRQyc/auuW0c6aKq8J8dT5CrSNI2CkSwZw5UxaFPr3t5FzddbtDDoN0m1OWJ85jHmJpEgd2Sj3WHRKOOoyN9tQ==
+technology_thematic_lib@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/technology_thematic_lib/-/technology_thematic_lib-2.0.0.tgz#c52b2d6e9dd81f1cb175b504a35e5a39435eb135"
+  integrity sha512-RWXgQuT45IoejncfTHQAVmQ9gq7M7Eyywwi/qQv1948oR4o8uRdZYEqq1/LQF2EzNfpY4sxhOf4OFuhefzK5sA==
   dependencies:
     eureka-js-client "^4.5.0"
     ip "^1.1.8"

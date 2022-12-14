@@ -2,6 +2,7 @@ import express from 'express';
 import logger from 'configs/winston.config';
 
 import { usersRepository } from 'repositories';
+import loggerFormat from 'helpers/logFormat';
 import users from './users.routes';
 import auth from './auth.routes';
 import categoryTopics from './categoryTopics.routes';
@@ -32,9 +33,9 @@ router.use('/demo-sentry', (req, res) => {
   logger.info('demo-sentry');
 });
 
-router.use('/demo-elk', (req, res) => {
+router.get('/demo-elk', (req, res) => {
+  logger.info(`Request: ${loggerFormat(req, 200)}`);
   res.send('demo-elk-ok');
-  logger.info('demo-elk-ok');
 });
 
 export default router;
