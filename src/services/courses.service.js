@@ -1,5 +1,5 @@
 import { CoursesRepository } from 'repositories';
-import { json } from 'technology_thematic_lib/utils';
+import { json } from 'utils';
 import { getPagination, getPagingData } from 'helpers/pagging';
 import { errors, infors } from 'constants';
 import db from 'models';

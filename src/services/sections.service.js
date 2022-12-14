@@ -1,5 +1,5 @@
 import { SectionsRepository } from 'repositories';
-import { json } from 'technology_thematic_lib/utils';
+import { json } from 'utils';
 import BaseService from './base.service';
 
 class SectionsService extends BaseService {
