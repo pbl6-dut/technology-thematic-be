@@ -1,6 +1,6 @@
 import logger from 'configs/winston.config';
 import { errors, infors } from 'constants';
-import { getPagingData } from 'helpers/pagging';
+import { getPagingData } from 'technology_thematic_lib';
 
 export default class BaseRepository {
   constructor(model) {

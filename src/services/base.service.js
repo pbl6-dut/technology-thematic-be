@@ -1,4 +1,4 @@
-import { getPagination } from 'helpers/pagging';
+import { getPagination } from 'technology_thematic_lib';
 
 export default class BaseService {
   constructor(repo) {
