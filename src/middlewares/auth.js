@@ -1,7 +1,7 @@
 import { UsersService, oAuthAccessTokenService } from 'services';
 import logger from 'configs/winston.config';
+import jwt from 'technology_thematic_lib';
 import Response from '../helpers/response';
-import jwt from '../helpers/jwt';
 import { errors, infors } from '../constants';
 
 export default class AuthMiddleware {

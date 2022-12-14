@@ -1,6 +1,6 @@
 import { VideosRepository } from 'repositories';
 import { InstructorResponse } from 'commons/responses/auth';
-import { json } from 'utils';
+import { json } from 'technology_thematic_lib/utils';
 import BaseService from './base.service';
 
 class VideosService extends BaseService {
