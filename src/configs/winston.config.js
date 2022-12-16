@@ -1,11 +1,11 @@
 import * as winston from 'winston';
 import * as path from 'path';
-import { LogstashTransport } from 'winston-logstash-transport';
+// import { LogstashTransport } from 'winston-logstash-transport';
 
-const logstashTransport = new LogstashTransport({
-  host: 'logstash',
-  port: 1514,
-});
+// const logstashTransport = new LogstashTransport({
+//   host: 'logstash',
+//   port: 1514,
+// });
 
 const logger = winston.createLogger({
   format: winston.format.combine(
@@ -45,7 +45,7 @@ const logger = winston.createLogger({
         })
       ),
     }),
-    logstashTransport,
+    // logstashTransport,
   ],
 });
 
